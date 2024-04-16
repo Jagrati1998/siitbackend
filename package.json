@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "build": "react-scripts build && npx serve -s build",
+    "build": "webpack --mode=development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -18,5 +18,11 @@
     "js-yaml": "^4.1.0",
     "mongoose": "^6.11.5",
     "nodemon": "^3.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-config": "^7.5.0",
+    "webpack-node-externals": "^3.0.0"
   }
 }
