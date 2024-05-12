@@ -9,13 +9,13 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./Routes/UserRouter.js":
-/*!******************************!*\
-  !*** ./Routes/UserRouter.js ***!
-  \******************************/
+/***/ "./Routes/UserRoute.js":
+/*!*****************************!*\
+  !*** ./Routes/UserRoute.js ***!
+  \*****************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const express = __webpack_require__(/*! express */ \"express\");\n\nconst {\n    getAllUsers,\n    addUser,\n    getUserById,\n  \n    updateUserById,\n    \n   \n    \n   \n} = __webpack_require__(/*! ../controllers/UserController */ \"./controllers/UserController.js\");\n\nconst router = express.Router();\nrouter.route(\"/\").get(getAllUsers).post(addUser);\nrouter.route(\"/:id/:name\").get(getUserById).put(updateUserById);\n\n\n\n\nmodule.exports = router;\n\n//# sourceURL=webpack://demo-backend/./Routes/UserRouter.js?");
+eval("const express = __webpack_require__(/*! express */ \"express\");\n\nconst {\n    getAllUsers,\n    addUser,\n    getUserById,\n  \n    updateUserById,\n    \n   \n    \n   \n} = __webpack_require__(/*! ../controllers/UserController */ \"./controllers/UserController.js\");\n\nconst router = express.Router();\nrouter.route(\"/\").get(getAllUsers).post(addUser);\nrouter.route(\"/:id/:name\").get(getUserById).put(updateUserById);\n\n\n\n\nmodule.exports = router;\n\n//# sourceURL=webpack://demo-backend/./Routes/UserRoute.js?");
 
 /***/ }),
 
@@ -25,7 +25,7 @@ eval("const express = __webpack_require__(/*! express */ \"express\");\n\nconst 
   \****************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("(__webpack_require__(/*! dotenv */ \"dotenv\").config)();\nconst express = __webpack_require__(/*! express */ \"express\");\nconst mongoose = __webpack_require__(/*! mongoose */ \"mongoose\");\nconst userRouter = __webpack_require__(/*! ./Routes/UserRouter */ \"./Routes/UserRouter.js\");\nconst cors = __webpack_require__(/*! cors */ \"cors\");\n\nconst app = express();\n\n// Middlware\napp.use(\n  cors({\n    origin: \"*\",\n  })\n);\napp.use(express.json());\napp.use(`/api`, userRouter);\n\napp.listen(3001, () => {\n  console.log(\"Application Serving at Port 3001\");\n});\n\n// Mongo DB Connection\nmongoose.connect(\n  `mongodb://${process.env.Mongo_IP}/${process.env.MOngo_DB}`,\n  {\n    useNewUrlParser: true,\n    useUnifiedTopology: true,\n  },\n  (err) => {\n    if (err) {\n      console.log(err);\n    } else {\n      console.log(\"Connected to MongoDB\");\n    }\n  }\n);\n\nmodule.exports = app;\n\n\n//# sourceURL=webpack://demo-backend/./app.js?");
+eval("(__webpack_require__(/*! dotenv */ \"dotenv\").config)();\nconst express = __webpack_require__(/*! express */ \"express\");\nconst mongoose = __webpack_require__(/*! mongoose */ \"mongoose\");\nconst userRouter = __webpack_require__(/*! ./Routes/UserRoute */ \"./Routes/UserRoute.js\");\nconst cors = __webpack_require__(/*! cors */ \"cors\");\n\nconst app = express();\n\n// Middlware\napp.use(\n  cors({\n    origin: \"*\",\n  })\n);\napp.use(express.json());\napp.use(`/api`, userRouter);\n\napp.listen(3001, () => {\n  console.log(\"Application Serving at Port 3001\");\n});\n\n// Mongo DB Connection\nmongoose.set('strictQuery', true);\nmongoose.connect(\n  // `mongodb://${process.env.Mongo_IP}/${process.env.MOngo_DB}`,\n  `${process.env.Mongo_IP}`,\n  {\n    useNewUrlParser: true,\n    useUnifiedTopology: true,\n  },\n  (err) => {\n    if (err) {\n      console.log(err);\n    } else {\n      console.log(\"Connected to MongoDB\");\n    }\n  }\n);\n\nmodule.exports = app;\n\n\n//# sourceURL=webpack://demo-backend/./app.js?");
 
 /***/ }),
 
@@ -45,7 +45,7 @@ eval("const userService = __webpack_require__(/*! ../services/UserService */ \".
   \************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const mongoose = __webpack_require__(/*! mongoose */ \"mongoose\");\nconst Schema = mongoose.Schema;\n\nconst userSchema = new Schema({\n   \n  registrationNo: {\n        type: String,\n        required: true,\n        unique: true ,\n        \n      },\n   \n}, {strict:false, minimize: false});\n\nmodule.exports = mongoose.model(`${process.env.Mongo_Collection}`, userSchema);\n\n//# sourceURL=webpack://demo-backend/./modals/User.js?");
+eval("const mongoose = __webpack_require__(/*! mongoose */ \"mongoose\");\n\nconst Schema = mongoose.Schema;\n\nconst userSchema = new Schema({\n   \n  registrationNo: {\n        type: String,\n        required: true,\n        unique: true ,\n        \n      },\n   \n}, {strict:false, minimize: false});\n\nmodule.exports = mongoose.model(`${process.env.Mongo_Collection}`, userSchema);\n\n//# sourceURL=webpack://demo-backend/./modals/User.js?");
 
 /***/ }),
 
