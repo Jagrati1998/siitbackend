@@ -6,7 +6,7 @@ const {
     getUserById,
   
     updateUserById,
-    
+    deleteUserById
    
     
    
@@ -14,7 +14,8 @@ const {
 
 const router = express.Router();
 router.route("/").get(getAllUsers).post(addUser);
-router.route("/:id/:name").get(getUserById).put(updateUserById);
+router.route("/:id/:name").get(getUserById);
+router.route("/:id").put(updateUserById).delete(deleteUserById);
 
 
 
